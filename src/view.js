@@ -1,18 +1,19 @@
-var authenticate = require('./auth')
-
 function view(req, res) {
-    console.log(`GET /view`)
+    // -----------------------------------------------------------------------
+    // View Middleware
+    // GET /view
+    //------------------------------------------------------------------------
+    
     var reqs = req.app.locals.requests
 
-    resp = ""
-    resp += `Captured ${reqs.length} requests.\n`
+    html = ""
 
     reqs.forEach((data) => {
-        resp += JSON.stringify(data)
-        resp += "\n"
+        html += JSON.stringify(data, null, 4)
+        html += "\n"
     })
 
-    res.send(resp)
+    res.send(html)
 }
 
 module.exports = view

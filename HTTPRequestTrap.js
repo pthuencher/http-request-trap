@@ -1,10 +1,16 @@
 const express = require('express')
 
+// local imports
+var capture = require('./src/capture')
+var view = require('./src/view')
+var auth = require('./src/auth')
+
 class HTTPReqestTrap {
 
-    constructor(port) {
+    constructor(port, creds) {
       this.port = port
       this.server = express()
+      this.server.locals.creds = creds
       this.server.locals.requests = []
 
       this.setup()
@@ -12,20 +18,20 @@ class HTTPReqestTrap {
 
     setup() {
 
-        // parse body data
+        // use parser for body data
         const bodyParser = require('body-parser')
-        this.server.use(bodyParser.urlencoded())
+        this.server.use(bodyParser.urlencoded({ extended: false }))
 
-        // view all captured requests
-        var view = require('./src/view')
-        var auth = require('./src/auth')
-        // TODO: avoid auth on /view for method POST, PUT, ...
+        // capture requests
+        // POST /* (all POST requests)
+        this.server.post('*', capture)
+        // GET /trap (in case only GET is possible)
+        this.server.get('/trap', capture)
+
+        // require authentication for request inspection
         this.server.use('/view', auth)
+        // display all captured requests
         this.server.get('/view', view)
-
-        // capture request and reply with {'success': 'true'}
-        var capture = require('./src/capture')
-        this.server.all('*', capture)
     }
 
     listen() {
@@ -38,6 +44,6 @@ class HTTPReqestTrap {
 module.exports = HTTPReqestTrap
 
 if (require.main === module) {
-    var app = new HTTPReqestTrap(1234)
+    var app = new HTTPReqestTrap(1234, { login: 'admin', password: 'admin' })
     app.listen()
 }
