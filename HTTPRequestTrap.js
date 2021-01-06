@@ -1,27 +1,31 @@
-const express = require('express');
+const express = require('express')
 
 class HTTPReqestTrap {
 
     constructor(port) {
-      this.port = port;
-      this.server = express();
-      this.server.locals.requests = [];
+      this.port = port
+      this.server = express()
+      this.server.locals.requests = []
 
-      this.setup();
+      this.setup()
     }
 
     setup() {
 
         // parse body data
-        const bodyParser = require('body-parser');
-        this.server.use(bodyParser.raw());
+        const bodyParser = require('body-parser')
+        this.server.use(bodyParser.urlencoded())
 
         // view all captured requests
-        var view = require('./src/view');
-        this.server.get('/view', view);
+        var view = require('./src/view')
+        var auth = require('./src/auth')
+        // TODO: avoid auth on /view for method POST, PUT, ...
+        this.server.use('/view', auth)
+        this.server.get('/view', view)
+
         // capture request and reply with {'success': 'true'}
-        var capture = require('./src/capture');
-        this.server.all('*', capture);
+        var capture = require('./src/capture')
+        this.server.all('*', capture)
     }
 
     listen() {
@@ -31,9 +35,9 @@ class HTTPReqestTrap {
     }
 }
 
-module.exports = HTTPReqestTrap;
+module.exports = HTTPReqestTrap
 
 if (require.main === module) {
-    var app = new HTTPReqestTrap(1234);
-    app.listen();
+    var app = new HTTPReqestTrap(1234)
+    app.listen()
 }
