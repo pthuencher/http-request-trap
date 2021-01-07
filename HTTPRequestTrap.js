@@ -8,8 +8,8 @@ var auth = require('./src/auth')
 class HTTPReqestTrap {
 
     constructor(port, creds) {
-      this.port = port
       this.server = express()
+      this.server.locals.port = this.port = port
       this.server.locals.creds = creds
       this.server.locals.requests = []
 

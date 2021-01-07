@@ -12,7 +12,7 @@ function view(req, res) {
     }
     else {
         // render HTML page
-        res.render('view', { reqs: reqs })
+        res.render('view', { port: req.app.locals.port, reqs: reqs })
     }
     
 }

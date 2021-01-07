@@ -1,22 +1,41 @@
 html
   head
+
     title HTTP-RT
+
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+    link(rel="preconnect", href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap", rel="stylesheet") 
+
     link(rel="stylesheet", href="/assets/css/style.css")
+    script(src="/assets/js/functions.js") 
+
   body
-    each req in reqs
-        .req-panel
-            .req-info
-                span.req-index ##{req.index}
-                span.req-method= req.method
-                spab.req-user= req.url
-            .req-data
-                h4 Headers:
-                table
-                    each val, key in req.headers
-                        tr
-                            td= key
-                            td= val
-                h4 Body:
-                p= req.body
+    .header
+        h1 HTTP Request Trap
+        span listening for incoming requests...
+    .content
+        each req in reqs
+            .req-panel
+                .req-info
+                    div
+                        span
+                            strong #&nbsp;
+                            span.req-index= req.index
+                        span.req-method= req.method
+                        span.req-url= req.url
+                    button(onclick="hide(this)") HIDE
+                .req-data
+                    .req-headers
+                        table
+                            each val, key in req.headers
+                                tr
+                                    td
+                                        strong= key
+                                    td
+                                        input(value=val, readonly=1)
+                    .req-body
+                        textarea(readonly=1)= req.body
 
         

@@ -1,30 +1,63 @@
+html, body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.content {
+    margin-top: 15px;
+}
+
 .req-panel {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
     background: #eee;
-    box-shadow: 0px 2px 5px #aaa;
-    margin-top: 20px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-bottom: 15px;
+    border: 1px solid #666;
 }
 
 .req-info {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #ccc;
     padding: 10px;
     border-radius: 5px;
+    border-bottom: 1px solid #666;
 }
 
 .req-data {
-    padding: 0px 20px;
+    display: flex;
+    padding: 5px 20px;
 }
 
 .req-method {
-    padding: 10px 20px 10px 20px;
+    padding: 5px 10px 5px 10px;
     background-color: #3333;
     border-radius: 5px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: bolder;
+    font-size: 10pt;
+}
+
+
+
+.req-body {
+    flex-grow: 1;
+}
+textarea {
+    width: 100%;
+    height: 98%;
+    resize: none;
+
+    border-radius: 2px;
+    border: 1px solid #666;
+    background-color: #fafafa;
+}
+input {
+    border: 1px solid #666;
+    background-color: #fafafa;
+    width: 100%;
+    border-radius: 2px;
+    padding: 2px;
 }
