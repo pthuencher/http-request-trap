@@ -1,0 +1,22 @@
+html
+  head
+    title HTTP-RT
+    link(rel="stylesheet", href="/assets/css/style.css")
+  body
+    each req in reqs
+        .req-panel
+            .req-info
+                span.req-index ##{req.index}
+                span.req-method= req.method
+                spab.req-user= req.url
+            .req-data
+                h4 Headers:
+                table
+                    each val, key in req.headers
+                        tr
+                            td= key
+                            td= val
+                h4 Body:
+                p= req.body
+
+        

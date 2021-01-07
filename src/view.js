@@ -1,19 +1,20 @@
 function view(req, res) {
     // -----------------------------------------------------------------------
     // View Middleware
-    // GET /view
     //------------------------------------------------------------------------
     
-    var reqs = req.app.locals.requests
+    // Get requests (recently -> old)
+    var reqs = req.app.locals.requests.reverse()
 
-    html = ""
-
-    reqs.forEach((data) => {
-        html += JSON.stringify(data, null, 4)
-        html += "\n"
-    })
-
-    res.send(html)
+    if (req.query.format && req.query.format == "json") {
+        // return json
+        res.send(reqs)
+    }
+    else {
+        // render HTML page
+        res.render('view', { reqs: reqs })
+    }
+    
 }
 
 module.exports = view

@@ -10,7 +10,7 @@ function capture(req, res) {
         method: req.method,
         url: req.originalUrl,
         headers: req.headers,
-        body: req.body,
+        body: JSON.stringify(req.body, null, 4),
     }
 
     reqs.push(data)

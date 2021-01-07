@@ -18,6 +18,12 @@ class HTTPReqestTrap {
 
     setup() {
 
+        // set view engine
+        this.server.set('view engine', 'pug')
+
+        // serve static files
+        this.server.use(express.static('public/static'))
+
         // use parser for body data
         const bodyParser = require('body-parser')
         this.server.use(bodyParser.urlencoded({ extended: false }))
@@ -28,10 +34,10 @@ class HTTPReqestTrap {
         // GET /trap (in case only GET is possible)
         this.server.get('/trap', capture)
 
-        // require authentication for request inspection
-        this.server.use('/view', auth)
+        // require authentication
         // display all captured requests
-        this.server.get('/view', view)
+        this.server.use(auth)
+        this.server.get('/', view)
     }
 
     listen() {
@@ -47,7 +53,7 @@ module.exports = HTTPReqestTrap
 if (require.main === module) {
 
     console.log(`
-        WARNING: do not run this in production        
+        WARNING: do not directly run this on a port that is exposed to the internet!      
         Make sure the port and credentials are setup correctly first!      
     `)
 
