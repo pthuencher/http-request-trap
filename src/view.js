@@ -4,7 +4,7 @@ function view(req, res) {
     //------------------------------------------------------------------------
     
     // Get requests (recently -> old)
-    var reqs = req.app.locals.requests.reverse()
+    var reqs = [...req.app.locals.requests].reverse()
 
     if (req.query.format && req.query.format == "json") {
         // return json
