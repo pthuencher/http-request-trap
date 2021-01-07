@@ -43,7 +43,14 @@ class HTTPReqestTrap {
 
 module.exports = HTTPReqestTrap
 
+// Just for demo purposes
 if (require.main === module) {
+
+    console.log(`
+        WARNING: do not run this in production        
+        Make sure the port and credentials are setup correctly first!      
+    `)
+
     var app = new HTTPReqestTrap(1234, { login: 'admin', password: 'admin' })
     app.listen()
 }
