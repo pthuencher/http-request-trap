@@ -16,7 +16,8 @@ html
             h2 HTTP Request Trap
             div
                 input.endpoint(value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
-                button.endpoint-copy(onclick="copy_clipboard('.endpoint')") copy
+                button.endpoint-copy(onclick="copy_clipboard('.endpoint');") copy
+            button.reload(onclick="location.reload();") reload
     .content
         each req in reqs
             .req-panel
@@ -27,7 +28,7 @@ html
                             span.req-index= req.index
                         span.req-method= req.method
                         span.req-url= req.url
-                    button(onclick="hide(this)") HIDE
+                    button(onclick="hide(this);") HIDE
                 .req-data
                     .req-headers
                         table

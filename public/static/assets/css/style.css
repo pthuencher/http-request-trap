@@ -23,6 +23,10 @@ html, body {
     margin-top: 10px;
 }
 
+.reload {
+    margin-top: 15px;
+}
+
 .req-panel {
     display: flex;
     flex-direction: column;
