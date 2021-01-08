@@ -7,11 +7,14 @@ var auth = require('./src/auth')
 
 class HTTPReqestTrap {
 
-    constructor(port, creds) {
+    constructor(port, credentials, ip='localhost') {
       this.server = express()
-      this.server.locals.port = this.port = port
-      this.server.locals.creds = creds
-      this.server.locals.requests = []
+      this.server.locals = {
+          ip: ip,
+          port: port,
+          credentials: credentials,
+          requests: []
+      }
 
       this.setup()
     }
@@ -29,7 +32,6 @@ class HTTPReqestTrap {
         this.server.use(bodyParser.urlencoded({ extended: false }))
 
         // capture requests
-        // POST /* (all POST requests)
         this.server.all('/trap', capture)
 
         // require authentication
@@ -39,8 +41,8 @@ class HTTPReqestTrap {
     }
 
     listen() {
-        this.server.listen(this.port, () => {
-            console.log(`Example app listening at http://localhost:${this.port}`)
+        this.server.listen(this.server.locals.port, () => {
+            console.log(`Example app listening at http://${this.server.locals.ip}:${this.server.locals.port}`)
         })
     }
 }

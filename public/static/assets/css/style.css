@@ -2,8 +2,25 @@ html, body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.header {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
 .content {
     margin-top: 15px;
+}
+
+.endpoint {
+    text-align: center;
+    padding: 15px 20px;
+    padding-right: 100px;
+}
+.endpoint-copy {
+    position: absolute;
+    margin-left: -88px;
+    margin-top: 10px;
 }
 
 .req-panel {

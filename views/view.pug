@@ -13,8 +13,10 @@ html
 
   body
     .header
-        h1 HTTP Request Trap
-        span listening for incoming requests...
+            h2 HTTP Request Trap
+            div
+                input.endpoint(value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
+                button.endpoint-copy(onclick="copy_clipboard('.endpoint')") copy
     .content
         each req in reqs
             .req-panel
