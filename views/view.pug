@@ -6,7 +6,8 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
     link(rel="preconnect", href="https://fonts.gstatic.com")
-    link(href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap", rel="stylesheet") 
+    link(href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap", rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap", rel="stylesheet") 
 
     link(rel="stylesheet", href="/assets/css/style.css")
     script(src="/assets/js/functions.js") 
@@ -15,8 +16,10 @@ html
     .header
             h2 HTTP Request Trap
             div
-                input.endpoint(value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
-                button.endpoint-copy(onclick="copy_clipboard('.endpoint');") copy
+                strong Endpoint:
+                div
+                    input.endpoint(value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
+                    button.endpoint-copy(onclick="copy_clipboard('.endpoint');") copy
             div
                 button.reload(onclick="location.reload();") reload
                 button.reset(onclick="reset()") reset

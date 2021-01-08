@@ -7,6 +7,9 @@ html, body {
         flex-direction: column;
         align-items: center;
 }
+.header > h2 {
+    font-family: 'Rammetto One', cursive;
+}
 
 .content {
     margin-top: 15px;
@@ -20,7 +23,7 @@ html, body {
 }
 .endpoint-copy {
     position: absolute;
-    margin-left: -88px;
+    margin-left: -89px;
     margin-top: 10px;
 }
 
