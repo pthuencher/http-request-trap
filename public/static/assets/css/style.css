@@ -9,10 +9,16 @@ html, body {
 }
 .header > h2 {
     font-family: 'Rammetto One', cursive;
+    font-size: 28pt;
+    margin-bottom: 0px;
+    color:#222;
 }
 
 .content {
     margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .endpoint {
@@ -20,11 +26,14 @@ html, body {
     padding: 15px 20px;
     padding-right: 100px;
     letter-spacing: 1;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
 }
 .endpoint-copy {
     position: absolute;
     margin-left: -89px;
-    margin-top: 10px;
+    margin-top: 11px;
 }
 
 .reload {
@@ -34,21 +43,22 @@ html, body {
 
 .req-panel {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    border-radius: 5px;
+    border-radius: 10px 10px 4px 4px;
     background: #eee;
     margin-bottom: 15px;
-    border: 1px solid #666;
+    border: 1px solid #222;
 }
 
 .req-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ccc;
+    background-color: #222;
+    color: white;
     padding: 10px;
-    border-radius: 5px;
-    border-bottom: 1px solid #666;
+    border-radius: 10px 10px 0px 0px;
 }
 .req-info > div:nth-child(2) {
     flex-grow: 1;
@@ -95,11 +105,11 @@ textarea {
 
     border-radius: 2px;
     border: 1px solid #666;
-    background-color: #fafafa;
+    background-color: #eee;
 }
 input {
     border: 1px solid #666;
-    background-color: #fafafa;
+    background-color: #eee;
     width: 100%;
     border-radius: 2px;
     padding: 2px;

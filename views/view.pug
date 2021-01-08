@@ -14,7 +14,7 @@ html
 
   body
     .header
-            h2 HTTP Request Trap
+            h2 HTTP ! Request Trap
             div
                 strong Endpoint:
                 div
@@ -24,27 +24,31 @@ html
                 button.reload(onclick="location.reload();") reload
                 button.reset(onclick="reset()") reset
     .content
-        each req in reqs
-            .req-panel
-                .req-info
-                    div  
-                        span.req-index
-                            strong #&nbsp;
-                            span= req.index
-                        span.req-time= req.dateUTCStr
-                    div
+        if reqs.length
+            each req in reqs
+                .req-panel
+                    .req-info
                         span.req-method= req.method
-                        span.req-url= req.url
-                .req-data
-                    .req-headers
-                        table
-                            each val, key in req.headers
-                                tr
-                                    td
-                                        strong= key
-                                    td
-                                        input(value=val, readonly=1)
-                    .req-body
-                        textarea(readonly=1)= req.body
-
+                        span.req-time= req.dateUTCStr
+                        span.req-index
+                                strong #&nbsp;
+                                span= req.index
+                    .req-data
+                        .req-headers
+                            input(value=req.url, readonly=1)
+                            table
+                                each val, key in req.headers
+                                    tr
+                                        td
+                                            strong= key
+                                        td
+                                            input(value=val, readonly=1)
+                        .req-body
+                            textarea(readonly=1)= req.body
+        else     
+            div
+                h4 Usage:
+                code $ curl http://localhost:1234/trap
+                br
+                code $ curl -X POST http://localhost:1234/trap -d "foo=bar"
         
