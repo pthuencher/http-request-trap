@@ -17,7 +17,9 @@ html
             div
                 input.endpoint(value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
                 button.endpoint-copy(onclick="copy_clipboard('.endpoint');") copy
-            button.reload(onclick="location.reload();") reload
+            div
+                button.reload(onclick="location.reload();") reload
+                button.reset(onclick="reset()") reset
     .content
         each req in reqs
             .req-panel

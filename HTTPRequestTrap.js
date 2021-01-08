@@ -4,6 +4,7 @@ const express = require('express')
 var capture = require('./src/capture')
 var view = require('./src/view')
 var auth = require('./src/auth')
+var reset = require('./src/reset')
 
 class HTTPReqestTrap {
 
@@ -38,6 +39,8 @@ class HTTPReqestTrap {
         // display all captured requests
         this.server.use(auth)
         this.server.get('/', view)
+        // reset (delete all captured request)
+        this.server.post('/reset', reset)
     }
 
     listen() {
