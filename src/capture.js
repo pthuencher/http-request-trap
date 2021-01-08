@@ -5,8 +5,11 @@ function capture(req, res) {
 
     var reqs = req.app.locals.requests
 
+    var now = new Date()
     var data = {
         index: reqs.length,
+        date: now,
+        dateUTCStr: now.toUTCString(),
         method: req.method,
         url: req.originalUrl,
         headers: req.headers,

@@ -22,10 +22,12 @@ html
         each req in reqs
             .req-panel
                 .req-info
-                    div
-                        span
+                    div  
+                        span.req-index
                             strong #&nbsp;
-                            span.req-index= req.index
+                            span= req.index
+                        span.req-time= req.dateUTCStr
+                    div
                         span.req-method= req.method
                         span.req-url= req.url
                     button(onclick="hide(this);") HIDE

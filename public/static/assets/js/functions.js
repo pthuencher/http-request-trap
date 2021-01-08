@@ -7,6 +7,6 @@ function copy_clipboard(input_selector) {
 
 function hide(element) {
     var req_ui = element.parentNode.parentNode;
-    req_ui.remove()
+    req_ui.style.display = "none";
 }
 

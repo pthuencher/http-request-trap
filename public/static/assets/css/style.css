@@ -16,6 +16,7 @@ html, body {
     text-align: center;
     padding: 15px 20px;
     padding-right: 100px;
+    letter-spacing: 1;
 }
 .endpoint-copy {
     position: absolute;
@@ -45,13 +46,30 @@ html, body {
     border-radius: 5px;
     border-bottom: 1px solid #666;
 }
+.req-info > div:nth-child(2) {
+    flex-grow: 1;
+}
 
 .req-data {
     display: flex;
     padding: 5px 20px;
 }
 
+.req-index {
+    padding: 5px 10px 5px 10px;
+    background-color: #3333;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 10pt;
+}
+
 .req-method {
+    border-radius: 5px;
+    margin-right: 10px;
+    font-weight: bolder;
+}
+
+.req-time {
     padding: 5px 10px 5px 10px;
     background-color: #3333;
     border-radius: 5px;
@@ -81,4 +99,20 @@ input {
     width: 100%;
     border-radius: 2px;
     padding: 2px;
+}
+
+
+@media (max-width:600px) {
+
+    .req-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .req-info > div:nth-child(1) {
+        margin-top: 5px;
+    }
+    .req-info > div:nth-child(2) {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
 }
