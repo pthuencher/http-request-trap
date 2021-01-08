@@ -30,9 +30,7 @@ class HTTPReqestTrap {
 
         // capture requests
         // POST /* (all POST requests)
-        this.server.post('*', capture)
-        // GET /trap (in case only GET is possible)
-        this.server.get('/trap', capture)
+        this.server.all('/trap', capture)
 
         // require authentication
         // display all captured requests
