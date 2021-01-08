@@ -103,7 +103,7 @@ input {
 }
 
 
-@media (max-width:600px) {
+@media (max-width:500px) {
 
     .req-info {
         flex-direction: column;
@@ -114,6 +114,5 @@ input {
     }
     .req-info > div:nth-child(2) {
         margin-top: 10px;
-        margin-bottom: 5px;
     }
 }

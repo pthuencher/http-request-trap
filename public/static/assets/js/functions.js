@@ -1,16 +1,12 @@
 function copy_clipboard(input_selector) {
+    // copy endpoint to clipboard
     var elem = document.querySelector(input_selector);
     elem.select();
     document.execCommand("copy");
-  }
-  
-
-function hide(element) {
-    var req_ui = element.parentNode.parentNode;
-    req_ui.style.display = "none";
 }
-
+  
 function reset() {
+    // Trigger server to delete all captured requests
     if (confirm('Are you want to delete all requests?'))
     fetch('/reset', { method: 'POST' }).then(() => {
         location.reload()

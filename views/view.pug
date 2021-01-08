@@ -1,7 +1,7 @@
 html
   head
 
-    title HTTP-RT
+    title HTTP Request Trap
 
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
@@ -32,7 +32,6 @@ html
                     div
                         span.req-method= req.method
                         span.req-url= req.url
-                    button(onclick="hide(this);") HIDE
                 .req-data
                     .req-headers
                         table
