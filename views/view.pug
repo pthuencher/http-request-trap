@@ -47,7 +47,13 @@ html
                             textarea(readonly=1)= req.body
         else     
             div
-                h4 Usage:
+                strong Getting started:
+                br
+                code Send a GET or POST request to /trap
+                br
+                br
+                strong Example:
+                br
                 code $ curl http://localhost:1234/trap
                 br
                 code $ curl -X POST http://localhost:1234/trap -d "foo=bar"
