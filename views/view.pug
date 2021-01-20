@@ -14,9 +14,8 @@ html
 
   body
     .header
-            h2 HTTP ! Request Trap
+            h2 HTTP - Request Trap
             div
-                strong Endpoint:
                 div
                     input.endpoint(value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
                     button.endpoint-copy(onclick="copy_clipboard('.endpoint');") copy
@@ -35,8 +34,20 @@ html
                                 span= req.index
                     .req-data
                         .req-headers
-                            input(value=req.url, readonly=1)
                             table
+                                tr
+                                    td
+                                        strong Remote Address
+                                    td
+                                        input(value=req.remoteAddress, readonly=1)
+                                tr
+                                    td
+                                        strong Path
+                                    td
+                                        input(value=req.url, readonly=1)
+                                tr
+                                    td(colspan="2") 
+                                        hr
                                 each val, key in req.headers
                                     tr
                                         td

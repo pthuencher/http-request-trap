@@ -10,11 +10,11 @@ html, body {
     border-bottom: 1px solid #222;
 }
 .header > h2 {
-    font-family: 'Rammetto One', cursive;
     font-size: 20pt;
     margin-bottom: 0px;
     color:#222;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .content {
