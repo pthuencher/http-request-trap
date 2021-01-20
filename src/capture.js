@@ -12,6 +12,7 @@ function capture(req, res) {
         dateUTCStr: now.toUTCString(),
         method: req.method,
         url: req.originalUrl,
+        remoteAddress: req.connection.remoteAddress,
         headers: req.headers,
         body: JSON.stringify(req.body, null, 4),
     }

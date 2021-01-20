@@ -2,6 +2,15 @@ html, body {
     font-family: 'Open Sans', sans-serif;
 }
 
+@media all and (max-width: 750px) {
+    body { padding: 0px 10px; }
+}
+@media all and (min-width: 750px) {
+    body { padding: 0px 20%; }
+}
+
+
+
 .header {
     display: flex;
     flex-direction: column;
@@ -10,11 +19,11 @@ html, body {
     border-bottom: 1px solid #222;
 }
 .header > h2 {
-    font-family: 'Rammetto One', cursive;
     font-size: 20pt;
     margin-bottom: 0px;
     color:#222;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .content {
@@ -69,6 +78,7 @@ html, body {
 
 .req-data {
     display: flex;
+    flex-direction: column;
     padding: 5px 5px;
 }
 
@@ -96,7 +106,13 @@ html, body {
     font-size: 10pt;
 }
 
+.req-body > textarea {
+    height: 150px;
+}
 
+.req-headers > table {
+    width: 100%;
+}
 
 .req-body {
     flex-grow: 1;
