@@ -54,17 +54,27 @@ html
                                         td
                                             input(value=val, readonly=1)
                         .req-body
-                            textarea(readonly=1)= req.body
-        else     
-            div
-                strong Getting started:
-                br
-                code Send a GET or POST request to /trap
-                br
-                br
-                strong Example:
-                br
-                code $ curl http://localhost:1234/trap
-                br
-                code $ curl -X POST http://localhost:1234/trap -d "foo=bar"
+                            textarea(readonly=1)= req.body   
+        div
+            strong How to use:
+            br
+            br
+            span Capture GET Requests via /trap
+            br
+            code= "curl http://"+locals.ip+":"+locals.port+"/trap"
+            br
+            br
+            span Capture POST Requests via /trap
+            br
+            code= "curl -X POST http://"+locals.ip+":"+locals.port+"/trap -d \"foo=bar\""
+            br
+            br
+            span Redirect Requests via /redirect
+            br
+            code= "curl -L http://"+locals.ip+":"+locals.port+"/redirect"
+            br
+            br
+            span Serve HTML via /serve
+            br
+            code= "curl http://"+locals.ip+":"+locals.port+"/serve"
         
