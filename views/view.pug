@@ -20,6 +20,7 @@ html
                     input.endpoint(value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
                     button.endpoint-copy(onclick="copy_clipboard('.endpoint');") copy
             div
+                button.reset(onclick="window.location = '/settings'") settings
                 button.reload(onclick="location.reload();") reload
                 button.reset(onclick="reset()") reset
     .content

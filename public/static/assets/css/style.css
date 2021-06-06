@@ -51,6 +51,7 @@ html, body {
 .reload {
     margin-top: 10px;
     margin-right: 15px;
+    margin-left: 15px;
 }
 
 .req-panel {
@@ -117,7 +118,7 @@ html, body {
 .req-body {
     flex-grow: 1;
 }
-textarea {
+.req-panel textarea {
     width: 100%;
     height: 99%;
     resize: none;
@@ -126,7 +127,7 @@ textarea {
     border: 1px solid #666;
     background-color: #eee;
 }
-input {
+.req-panel input {
     border: 1px solid #666;
     background-color: #eee;
     width: 100%;
@@ -134,8 +135,11 @@ input {
     padding: 2px;
 }
 
+.settings input[type="input"] {
+    width: 100%;
+}
 
-@media (max-width:500px) {
-
-    
+.settings textarea {
+    width: 100%;
+    height: 100%;
 }

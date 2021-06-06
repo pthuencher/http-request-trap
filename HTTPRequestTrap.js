@@ -1,6 +1,7 @@
 const express = require('express')
 
 // local imports
+var settings = require('./src/settings')
 var capture = require('./src/capture')
 var redirect = require('./src/redirect')
 var serve = require('./src/serve')
@@ -51,6 +52,9 @@ class HTTPReqestTrap {
         this.server.get('/', view)
         // reset (delete all captured request)
         this.server.post('/reset', reset)
+        // settings
+        this.server.get('/settings', settings.get)
+        this.server.post('/settings', settings.post)
     }
 
     listen() {
