@@ -1,6 +1,6 @@
 function capture(req, res) {
     // -----------------------------------------------------------------------
-    // Capturing Middleware
+    // Capture Middleware
     //------------------------------------------------------------------------
 
     var reqs = req.app.locals.requests

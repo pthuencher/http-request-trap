@@ -2,6 +2,8 @@ const express = require('express')
 
 // local imports
 var capture = require('./src/capture')
+var redirect = require('./src/redirect')
+var serve = require('./src/serve')
 var view = require('./src/view')
 var auth = require('./src/auth')
 var reset = require('./src/reset')
@@ -14,7 +16,9 @@ class HTTPReqestTrap {
           ip: ip,
           port: port,
           credentials: credentials,
-          requests: []
+          requests: [],
+          redirect_url: "http://" + ip + ":" + port + "/trap",
+          serve_content: "itworks"
       }
 
       this.setup()
@@ -31,6 +35,12 @@ class HTTPReqestTrap {
         // use parser for body data
         const bodyParser = require('body-parser')
         this.server.use(bodyParser.urlencoded({ extended: false }))
+
+        // redirect requests
+        this.server.all('/redirect', redirect)
+
+        // serve content
+        this.server.all('/serve', serve)
 
         // capture requests
         this.server.all('/trap', capture)
