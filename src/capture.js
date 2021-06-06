@@ -18,6 +18,7 @@ function capture(req, res) {
     }
 
     reqs.push(data)
+    res.set("Access-Control-Allow-Origin", "*")
     res.send({"success": "true"})
     console.log(`Captured ${data.method.toUpperCase()} ${data.url}`)
 }
