@@ -7,7 +7,7 @@ function copy_clipboard(input_selector) {
   
 function reset() {
     // Trigger server to delete all captured requests
-    if (confirm('Are you want to delete all requests?'))
+    if (confirm('Are you sure you want to delete all requests?'))
     fetch('/reset', { method: 'POST' }).then(() => {
         location.reload()
     });

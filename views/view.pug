@@ -9,25 +9,28 @@ html
     link(href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap", rel="stylesheet")
     link(href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap", rel="stylesheet") 
 
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css", rel="stylesheet") 
+
     link(rel="stylesheet", href="/assets/css/style.css")
     script(src="/assets/js/functions.js") 
 
   body
     .header
-            h2 HTTP - Request Trap
-            div
-                div
-                    input.endpoint(value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
-                    button.endpoint-copy(onclick="copy_clipboard('.endpoint');") copy
-            div
-                button.reset(onclick="window.location = '/settings'") settings
-                button.reload(onclick="location.reload();") reload
-                button.reset(onclick="reset()") reset
+        h2 HTTP - Request Trap
+        div.input-group.mb-3
+            div.input-group-prepend
+                span.input-group-text Endpoint
+            input.endpoint.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
+            div.input-group-append
+                button.endpoint-copy.input-group-text.btn.btn-primary(onclick="copy_clipboard('.endpoint');") copy
+        div.input-group.mb-3
+            button.btn.btn-sm.btn-secondary(onclick="window.location = '/settings'") settings
+            button.btn.btn-sm.btn-danger(onclick="reset()") reset
     .content
         if reqs.length
             each req in reqs
-                .req-panel
-                    .req-info
+                .req-panel.panel.panel-default
+                    .req-info.panel-heading
                         span
                             span.req-index
                                 strong #&nbsp;
@@ -35,7 +38,7 @@ html
                             span.req-method= req.method
                         span.req-time= req.dateUTCStr
                         
-                    .req-data
+                    .req-data.panel-dbody
                         .req-headers
                             table
                                 tr
@@ -56,25 +59,23 @@ html
                         .req-body
                             textarea(readonly=1)= req.body   
         div
-            strong How to use:
-            br
-            br
-            span Capture GET Requests via /trap
+            h4 How to use:
+            span Capture GET Requests:
             br
             code= "curl http://"+locals.ip+":"+locals.port+"/trap"
             br
             br
-            span Capture POST Requests via /trap
+            span Capture POST Requests:
             br
             code= "curl -X POST http://"+locals.ip+":"+locals.port+"/trap -d \"foo=bar\""
             br
             br
-            span Redirect Requests via /redirect
+            span Redirect Requests:
             br
             code= "curl -L http://"+locals.ip+":"+locals.port+"/redirect"
             br
             br
-            span Serve HTML via /serve
+            span Serve HTML:
             br
             code= "curl http://"+locals.ip+":"+locals.port+"/serve"
         
