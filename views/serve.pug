@@ -1,0 +1,19 @@
+extends layout.pug 
+
+block content
+    ul.nav.nav-tabs
+        li.nav-item 
+            a.nav-link(href="/?page=trap") Trap   
+        li.nav-item 
+            a.nav-link(href="/?page=redirect") Redirect
+        li.nav-item 
+            a.nav-link.active(href="/?page=serve") Serve
+
+    form.settings(action="/settings", method="POST")
+        br
+        input.btn.btn-success(type="submit", value="Save Changes")
+        br
+        br
+        strong Serve content (via /serve):
+        br
+        textarea(name="serve_content")= locals.serve_content

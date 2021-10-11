@@ -1,10 +1,3 @@
-function get(req, res) {
-    // -----------------------------------------------------------------------
-    // Settings (GET) Middleware
-    //------------------------------------------------------------------------
-    
-    res.render('settings', { locals: req.app.locals })
-}
 
 function post(req, res) {
     // -----------------------------------------------------------------------
@@ -13,16 +6,16 @@ function post(req, res) {
     
     if (req.body.redirect_url) {
         req.app.locals.redirect_url = req.body.redirect_url
+        res.render('redirect', { locals: req.app.locals })
     }
 
     if (req.body.serve_content) {
         req.app.locals.serve_content = req.body.serve_content
+        res.render('serve', { locals: req.app.locals })
     }
 
-    res.render('settings', { locals: req.app.locals })
 }
 
 module.exports = {
-    get: get,
     post: post
 }

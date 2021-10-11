@@ -9,7 +9,10 @@ html, body {
     body { padding: 0px 20%; }
 }
 
-
+.title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 .header {
     display: flex;

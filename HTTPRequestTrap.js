@@ -53,7 +53,6 @@ class HTTPReqestTrap {
         // reset (delete all captured request)
         this.server.post('/reset', reset)
         // settings
-        this.server.get('/settings', settings.get)
         this.server.post('/settings', settings.post)
     }
 
