@@ -3,17 +3,16 @@ extends layout.pug
 block content
     ul.nav.nav-tabs
         li.nav-item 
-            a.nav-link(href="/?page=trap") Trap   
+            a.nav-link(href="/dashboard/trap") /trap   
         li.nav-item 
-            a.nav-link(href="/?page=redirect") Redirect
+            a.nav-link(href="/dashboard/redirect") /redirect
         li.nav-item 
-            a.nav-link.active(href="/?page=serve") Serve
+            a.nav-link.active(href="/dashboard/serve") /serve
 
     form.settings(action="/settings", method="POST")
-        br
-        input.btn.btn-success(type="submit", value="Save Changes")
-        br
-        br
-        strong Serve content (via /serve):
-        br
+        input.btn.btn-primary(type="button", onclick="window.open('/serve', '_blank').focus();", value="open")
+        input.btn.btn-success(type="submit", value="save")
+
+        hr
+
         textarea(name="serve_content")= locals.serve_content

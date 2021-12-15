@@ -3,72 +3,31 @@ extends layout.pug
 block content
     ul.nav.nav-tabs
         li.nav-item 
-            a.nav-link.active(href="/?page=trap") Trap   
+            a.nav-link.active(href="/dashboard/trap") /trap   
         li.nav-item 
-            a.nav-link(href="/?page=redirect") Redirect
+            a.nav-link(href="/dashboard/redirect") /redirect
         li.nav-item 
-            a.nav-link(href="/?page=serve") Serve
+            a.nav-link(href="/dashboard/serve") /serve
 
-    br
-    .header
-        div.input-group.mb-3
-            div.input-group-prepend
-                span.input-group-text Endpoint
-            input.endpoint.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
-            div.input-group-append
-                button.endpoint-copy.input-group-text.btn.btn-primary(onclick="copy_clipboard('.endpoint');") copy
-            div.input-group-append
-                button.btn.btn-md.btn-danger(onclick="reset()") reset
+    div.input-group
+        div.input-group-prepend
+            span.input-group-text Endpoint
+        input.endpoint.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
+        div.input-group-append
+            button.endpoint-copy.input-group-text.btn.btn-primary(onclick="copy_clipboard('.endpoint');") copy
+            button.btn.btn-danger(onclick="reset()") reset
+
+    hr
+
     .content
         if reqs.length
             each req in reqs
                 .req-panel.panel.panel-default
                     .req-info.panel-heading
-                        span
-                            span.req-index
-                                strong #&nbsp;
-                                span= req.index
-                            span.req-method= req.method
+                        span # #{req.index}
+                        span= req.remoteAddress
                         span.req-time= req.dateUTCStr
                         
-                    .req-data.panel-dbody
-                        .req-headers
-                            table
-                                tr
-                                    td(colspan=2)
-                                        input(value=req.url, readonly=1)
-                                tr
-                                    td
-                                        strong Remote Address
-                                    td
-                                        input(value=req.remoteAddress, readonly=1)
-                                        
-                                each val, key in req.headers
-                                    tr
-                                        td
-                                            strong= key
-                                        td
-                                            input(value=val, readonly=1)
-                        .req-body
-                            textarea(readonly=1)= req.body   
-        div
-            h4 How to use:
-            span Capture GET Requests:
-            br
-            code= "curl http://"+locals.ip+":"+locals.port+"/trap"
-            br
-            br
-            span Capture POST Requests:
-            br
-            code= "curl -X POST http://"+locals.ip+":"+locals.port+"/trap -d \"foo=bar\""
-            br
-            br
-            span Redirect Requests:
-            br
-            code= "curl -L http://"+locals.ip+":"+locals.port+"/redirect"
-            br
-            br
-            span Serve HTML:
-            br
-            code= "curl http://"+locals.ip+":"+locals.port+"/serve"
+                    .req-data.panel-body
+                        pre= req.info_json_str
         

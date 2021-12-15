@@ -1,11 +1,10 @@
 const express = require('express')
 
 // local imports
-var settings = require('./src/settings')
 var capture = require('./src/capture')
 var redirect = require('./src/redirect')
 var serve = require('./src/serve')
-var view = require('./src/view')
+var dashboard = require('./src/dashboard')
 var auth = require('./src/auth')
 var reset = require('./src/reset')
 
@@ -18,6 +17,7 @@ class HTTPReqestTrap {
           port: port,
           credentials: credentials,
           requests: [],
+          redirects: [],
           redirect_url: "http://" + ip + ":" + port + "/trap",
           serve_content: "itworks"
       }
@@ -46,14 +46,20 @@ class HTTPReqestTrap {
         // capture requests
         this.server.all('/trap', capture)
 
-        // require authentication
-        // display all captured requests
+        // require authentication for all endpoints below
         this.server.use(auth)
-        this.server.get('/', view)
+
+        // dashboard
+        this.server.get('/dashboard', dashboard.view)
+        this.server.get('/dashboard/trap', dashboard.view_trap)
+        this.server.get('/dashboard/redirect', dashboard.view_redirect)
+        this.server.get('/dashboard/serve', dashboard.view_serve)
+
         // reset (delete all captured request)
         this.server.post('/reset', reset)
+
         // settings
-        this.server.post('/settings', settings.post)
+        this.server.post('/settings', dashboard.post)
     }
 
     listen() {

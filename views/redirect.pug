@@ -3,17 +3,31 @@ extends layout.pug
 block content
     ul.nav.nav-tabs
         li.nav-item 
-            a.nav-link(href="/?page=trap") Trap   
+            a.nav-link(href="/dashboard/trap") /trap   
         li.nav-item 
-            a.nav-link.active(href="/?page=redirect") Redirect
+            a.nav-link.active(href="/dashboard/redirect") /redirect
         li.nav-item 
-            a.nav-link(href="/?page=serve") Serve
+            a.nav-link(href="/dashboard/serve") /serve
 
     form.settings(action="/settings", method="POST")
-        br
-        input.btn.btn-success(type="submit", value="Save Changes")
-        br
-        br
-        strong Redirect to (via /redirect): 
-        br
-        input(type="input", name="redirect_url", value=locals.redirect_url)
+        div.input-group.mb-3
+            div.input-group-prepend
+                span.input-group-text Destination
+            input.endpoint.form-control(type="text", name="redirect_url", value=locals.redirect_url)
+            div.input-group-append
+                input.input-group-text.btn.btn-success(type="submit", value="save")
+
+    hr
+
+    .content
+        if redirects.length
+            each req in redirects
+                .req-panel.panel.panel-default
+                    .req-info.panel-heading
+                        span
+                            span.req-index
+                                strong #&nbsp;
+                                span= req.index
+                            span.req-method= req.remoteAddress
+                        span.req-time= req.dateUTCStr
+                        

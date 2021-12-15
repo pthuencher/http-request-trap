@@ -9,7 +9,22 @@ html, body {
     body { padding: 0px 20%; }
 }
 
-.title {
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 0px;
+ }
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title, .nav {
     margin-top: 20px;
     margin-bottom: 20px;
 }
