@@ -7,7 +7,7 @@ function capture(req, res) {
 
     var now = new Date()
     var req_data = {
-        index: reqs.length + 1,
+        id: req.app.locals.request_id++,
         date: now,
         dateUTCStr: now.toUTCString(),
         remoteAddress: req.connection.remoteAddress,

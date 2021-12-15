@@ -1,3 +1,5 @@
+const { request } = require("http")
+
 function dashboard(req, res, next) {
     // -----------------------------------------------------------------------
     // Dashboard Middleware
@@ -44,7 +46,19 @@ function get_trap(req, res, next) {
 }
 
 function post_trap(req, res, next) {
-    next()
+
+    switch(req.body.action) {
+
+        case "delete":
+            req.app.locals.requests = []
+            break
+
+        default:
+            //- Unknown action
+            break
+    }
+
+    get_trap(req, res, next)
 }
 
 function get_redirect(req, res, next) {

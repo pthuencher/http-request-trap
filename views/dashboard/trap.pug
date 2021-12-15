@@ -12,13 +12,17 @@ block content
             a.nav-link(href="/dashboard/serve") /serve
 
     //- Trap endpoint
-    div.input-group
-        div.input-group-prepend
-            span.input-group-text Endpoint
-        input.endpoint.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
-        div.input-group-append
-            button.endpoint-copy.input-group-text.btn.btn-primary(onclick="copy_clipboard('.endpoint');") copy
-            button.btn.btn-danger(onclick="reset()") reset
+    form(action="/dashboard/trap", method="POST", onsubmit="return confirm('Are you sure you want to delete all requests?')")
+        input(type="hidden", name="action", value="delete")
+    
+        div.input-group            
+            div.input-group-prepend
+                span.input-group-text Endpoint
+            input.endpoint.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
+            div.input-group-append
+                input.input-group-text.btn.btn-primary(type="button", value="copy", onclick="copy_clipboard('.endpoint');")
+                input.input-group-text.btn.btn-primary(type="button", value="reload", onclick="location.href='/dashboard/trap';")
+                button.btn.btn-danger(type="submit") reset
 
     hr
 
@@ -26,7 +30,7 @@ block content
     each req in reqs
         .req-panel.panel.panel-default
             .req-info.panel-heading
-                span # #{req.index}
+                span # #{req.id}
                 span= req.remoteAddress
                 span.req-time= req.dateUTCStr
                 

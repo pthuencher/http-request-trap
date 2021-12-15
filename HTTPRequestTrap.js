@@ -15,6 +15,7 @@ class HTTPReqestTrap {
             ip: ip,
             port: port,
             credentials: credentials,
+            request_id: 1,
             requests: [],
             redirects: { 
                 trap: { dest: "/trap", requests: [] },
