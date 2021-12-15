@@ -1,12 +1,11 @@
 const express = require('express')
 
-// local imports
+// request handlers
 var capture = require('./src/capture')
 var redirect = require('./src/redirect')
 var serve = require('./src/serve')
 var dashboard = require('./src/dashboard')
 var auth = require('./src/auth')
-var reset = require('./src/reset')
 
 class HTTPReqestTrap {
 
@@ -22,7 +21,10 @@ class HTTPReqestTrap {
                 google: { dest: "https://google.com", requests: [] },
                 ard: { dest: "https://ard.de", requests: [] } 
             },
-            serve_content: "itworks"
+            serves: {
+                test: { content: "!! it works !!", requests: [] },
+                alert: { content: "<html><head/><body><script>alert('0ops!')</script></body></html>", requests: [] },
+            }
       }
 
       this.setup()
@@ -40,29 +42,22 @@ class HTTPReqestTrap {
         const bodyParser = require('body-parser')
         this.server.use(bodyParser.urlencoded({ extended: false }))
 
+        // capture requests
+        this.server.all('/trap', capture)
+
         // redirect requests
         this.server.all('/redirect/:id', redirect)
 
         // serve content
-        this.server.all('/serve', serve)
+        this.server.all('/serve/:id', serve)
 
-        // capture requests
-        this.server.all('/trap', capture)
+        // require authentication for all dashboard endpoints
+        this.server.use('/dashboard/*', auth)
+        this.server.get('/dashboard/:feature', dashboard)
 
-        // require authentication for all endpoints below
-        this.server.use(auth)
+        // return 404 for any other endpoint
+        this.server.all('*', (req, res) => { res.sendStatus(404); })
 
-        // dashboard
-        this.server.get('/dashboard', dashboard.view)
-        this.server.get('/dashboard/trap', dashboard.view_trap)
-        this.server.get('/dashboard/redirect', dashboard.view_redirect)
-        this.server.get('/dashboard/serve', dashboard.view_serve)
-
-        // reset (delete all captured request)
-        this.server.post('/reset', reset)
-
-        // settings
-        this.server.post('/settings', dashboard.post)
     }
 
     listen() {
