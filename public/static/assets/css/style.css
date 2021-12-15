@@ -40,12 +40,6 @@ hr {
     color:#222;
 }
 
-.reload {
-    margin-top: 10px;
-    margin-right: 15px;
-    margin-left: 15px;
-}
-
 .req-panel {
     display: flex;
     width: 100%;
@@ -64,28 +58,11 @@ hr {
     padding: 2px 5px;
     border-radius: 4px 4px 0px 0px;
 }
-.req-info > div:nth-child(2) {
-    flex-grow: 1;
-}
 
 .req-data {
     display: flex;
     flex-direction: column;
     padding: 5px 5px;
-}
-
-.req-index {
-    padding: 5px 10px 5px 10px;
-    background-color: #3333;
-    border-radius: 5px;
-    font-weight: bolder;
-    font-size: 10pt;
-}
-
-.req-method {
-    border-radius: 5px;
-    margin-right: 10px;
-    font-weight: bolder;
 }
 
 .req-time {
@@ -96,41 +73,4 @@ hr {
     margin-right: 10px;
     font-weight: bolder;
     font-size: 10pt;
-}
-
-.req-body > textarea {
-    height: 150px;
-}
-
-.req-headers > table {
-    width: 100%;
-}
-
-.req-body {
-    flex-grow: 1;
-}
-.req-panel textarea {
-    width: 100%;
-    height: 99%;
-    resize: none;
-
-    border-radius: 2px;
-    border: 1px solid #666;
-    background-color: #eee;
-}
-.req-panel input {
-    border: 1px solid #666;
-    background-color: #eee;
-    width: 100%;
-    border-radius: 2px;
-    padding: 2px;
-}
-
-.settings input[type="input"] {
-    width: 100%;
-}
-
-.settings textarea {
-    width: 100%;
-    height: 100%;
 }
