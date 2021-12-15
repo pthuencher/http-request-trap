@@ -1,6 +1,8 @@
 extends ../layout.pug 
 
 block content
+
+    //- Navigation
     ul.nav.nav-tabs
         li.nav-item 
             a.nav-link(href="/dashboard/trap") /trap   
@@ -9,16 +11,49 @@ block content
         li.nav-item 
             a.nav-link(href="/dashboard/serve") /serve
 
+    //- Redirect entries
     each data, id in locals.redirects
-        form.settings(action="/settings", method="POST")
+        form(action="/dashboard/redirect", method="POST")
+            input(type="hidden", name="action", value="delete")
+            input(type="hidden", name="id", value=`${id}`)
+
             div.input-group.mb-3
                 div.input-group-prepend
                     a(href=`/redirect/${id}`)
                         span.input-group-text /redirect/#{id}
-                input.endpoint.form-control(type="text", name="redirect_url", value=data.dest)
+                input.endpoint.form-control(type="text", name="dest", value=data.dest)
                 div.input-group-append
-                    input.input-group-text.btn.btn-success(type="submit", value="save")
+                    button.btn.btn-danger(type="submit") delete
 
         hr
+
+    //- Add button
+    button.btn.btn-info(type="button", data-toggle="modal" data-target="#add-redirect-modal") +
+
+    //- Add modal (hidden on load)
+    div#add-redirect-modal.modal.fade(role="dialog")
+        div.modal-dialog(role="document")
+
+            div.modal-content
+                form(action="/dashboard/redirect", method="POST")
+                    input(type="hidden", name="action", value="add")
+
+                    div.modal-header
+                        h4.modal-title Add new redirect
+                        button.close(type="button", data-dismiss="modal") &times;
+
+                    div.modal-body
+                        div.input-group.mb-3
+                            div.input-group-prepend
+                                span.input-group-text ID
+                            input.endpoint.form-control(type="text", name="id", required=1)
+                        div.input-group.mb-3
+                            div.input-group-prepend
+                                span.input-group-text Destination
+                            input.endpoint.form-control(type="text", name="dest", required=1)
+
+                    div.modal-footer
+                        button.btn.btn-default(type="button", data-dismiss="modal") Close
+                        button.btn.btn-success(type="submit") Save
 
                         

@@ -52,8 +52,9 @@ class HTTPReqestTrap {
         this.server.all('/serve/:id', serve)
 
         // require authentication for all dashboard endpoints
-        this.server.use('/dashboard/*', auth)
+        this.server.use('/dashboard/.+', auth)
         this.server.get('/dashboard/:feature', dashboard)
+        this.server.post('/dashboard/:feature', dashboard)
 
         // return 404 for any other endpoint
         this.server.all('*', (req, res) => { res.sendStatus(404); })

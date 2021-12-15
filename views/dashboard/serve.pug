@@ -1,6 +1,8 @@
 extends ../layout.pug 
 
 block content
+
+    //- Navigation
     ul.nav.nav-tabs
         li.nav-item 
             a.nav-link(href="/dashboard/trap") /trap   
@@ -9,10 +11,47 @@ block content
         li.nav-item 
             a.nav-link.active(href="/dashboard/serve") /serve
 
-    form.settings(action="/settings", method="POST")
-        input.btn.btn-primary(type="button", onclick="window.open('/serve', '_blank').focus();", value="open")
-        input.btn.btn-success(type="submit", value="save")
+    //- Serve entries
+    each data, id in locals.serves
+        form.settings(action="/dashboard/serve", method="POST")
+            input(type="hidden", name="action", value="delete")
+            input(type="hidden", name="id", value=`${id}`)
+
+            div.input-group.mb-3
+                div.input-group-prepend
+                    a(href=`/serve/${id}`)
+                        span.input-group-text /serve/#{id}
+                input.endpoint.form-control(type="text", name="content", value=data.content)
+                div.input-group-append
+                    button.btn.btn-danger(type="submit") delete
 
         hr
 
-        textarea(name="serve_content")= locals.serve_content
+    //- Add button
+    button.btn.btn-info(type="button", data-toggle="modal" data-target="#add-serve-modal") +
+
+    //- Add modal (hidden on load)
+    div#add-serve-modal.modal.fade(role="dialog")
+        div.modal-dialog(role="document")
+
+            div.modal-content
+                form(action="/dashboard/serve", method="POST")
+                    input(type="hidden", name="action", value="add")
+
+                    div.modal-header
+                        h4.modal-title Add new content to serve
+                        button.close(type="button", data-dismiss="modal") &times;
+
+                    div.modal-body
+                        div.input-group.mb-3
+                            div.input-group-prepend
+                                span.input-group-text ID
+                            input.endpoint.form-control(type="text", name="id", required=1)
+                        div.input-group.mb-3
+                            div.input-group-prepend
+                                span.input-group-text Content
+                            input.endpoint.form-control(type="text", name="content", required=1)
+
+                    div.modal-footer
+                        button.btn.btn-default(type="button", data-dismiss="modal") Close
+                        button.btn.btn-success(type="submit") Save

@@ -1,6 +1,8 @@
 extends ../layout.pug 
 
 block content
+
+    //- Navigation
     ul.nav.nav-tabs
         li.nav-item 
             a.nav-link.active(href="/dashboard/trap") /trap   
@@ -9,6 +11,7 @@ block content
         li.nav-item 
             a.nav-link(href="/dashboard/serve") /serve
 
+    //- Trap endpoint
     div.input-group
         div.input-group-prepend
             span.input-group-text Endpoint
@@ -19,15 +22,17 @@ block content
 
     hr
 
-    .content
-        if reqs.length
-            each req in reqs
-                .req-panel.panel.panel-default
-                    .req-info.panel-heading
-                        span # #{req.index}
-                        span= req.remoteAddress
-                        span.req-time= req.dateUTCStr
-                        
-                    .req-data.panel-body
-                        pre= req.info_json_str
-        
+    //- Trapped request entries
+    each req in reqs
+        .req-panel.panel.panel-default
+            .req-info.panel-heading
+                span # #{req.index}
+                span= req.remoteAddress
+                span.req-time= req.dateUTCStr
+                
+            .req-data.panel-body
+                pre= req.info_json_str
+
+        hr
+
+

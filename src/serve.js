@@ -22,7 +22,7 @@ function serve(req, res, next) {
         entry.requests.push(req_data)
 
         res.send(entry.content)
-        console.log(`Serving content of ${id} to ${req_data.remoteAddress}`)
+        console.log(`Serve content of ${id} to ${req_data.remoteAddress}`)
     }
     
 }

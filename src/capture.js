@@ -6,7 +6,7 @@ function capture(req, res) {
     var reqs = req.app.locals.requests
 
     var now = new Date()
-    var data = {
+    var req_data = {
         index: reqs.length + 1,
         date: now,
         dateUTCStr: now.toUTCString(),
@@ -19,12 +19,12 @@ function capture(req, res) {
         }
     }
 
-    data.info_json_str = JSON.stringify(data.info, null, 4);
-    reqs.push(data)
+    req_data.info_json_str = JSON.stringify(req_data.info, null, 4);
+    reqs.push(req_data)
 
     res.set("Access-Control-Allow-Origin", "*")
     res.send({"success": "true"})
-    console.log(`Captured ${data.info.method.toUpperCase()} ${data.info.url}`)
+    console.log(`Captured ${req_data.info.method.toUpperCase()} ${req_data.info.url} from ${req_data.remoteAddress}`)
 }
 
 module.exports = capture

@@ -7,11 +7,12 @@ function redirect(req, res, next) {
     var id = req.params.id
 
     if (!(id in redirects)) {
+        //- Unknown redirect id
         next()
     }
     else {
         var entry = redirects[id]
-        
+
         var now = new Date()
         var req_data = {
             date: now,
