@@ -9,25 +9,16 @@ block content
         li.nav-item 
             a.nav-link(href="/dashboard/serve") /serve
 
-    form.settings(action="/settings", method="POST")
-        div.input-group.mb-3
-            div.input-group-prepend
-                span.input-group-text Destination
-            input.endpoint.form-control(type="text", name="redirect_url", value=locals.redirect_url)
-            div.input-group-append
-                input.input-group-text.btn.btn-success(type="submit", value="save")
+    each data, id in locals.redirects
+        form.settings(action="/settings", method="POST")
+            div.input-group.mb-3
+                div.input-group-prepend
+                    a(href=`/redirect/${id}`)
+                        span.input-group-text /redirect/#{id}
+                input.endpoint.form-control(type="text", name="redirect_url", value=data.dest)
+                div.input-group-append
+                    input.input-group-text.btn.btn-success(type="submit", value="save")
 
-    hr
+        hr
 
-    .content
-        if redirects.length
-            each req in redirects
-                .req-panel.panel.panel-default
-                    .req-info.panel-heading
-                        span
-                            span.req-index
-                                strong #&nbsp;
-                                span= req.index
-                            span.req-method= req.remoteAddress
-                        span.req-time= req.dateUTCStr
                         

@@ -23,8 +23,7 @@ function view_trap(req, res) {
 
 function view_redirect(req, res) {
     // Get requests (recently -> old)
-    var redirects = [...req.app.locals.redirects].reverse()
-    res.render('redirect', { locals: req.app.locals, redirects: req.app.locals.redirects })
+    res.render('redirect', { locals: req.app.locals })
 }
 
 function view_serve(req, res) {

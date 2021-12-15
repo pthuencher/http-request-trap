@@ -1,27 +1,35 @@
-function redirect(req, res) {
+function redirect(req, res, next) {
     // -----------------------------------------------------------------------
     // Redirect Middleware
     //------------------------------------------------------------------------
 
-    var redirect_url = req.app.locals.redirect_url
     var redirects = req.app.locals.redirects
+    var id = req.params.id
 
-    var now = new Date()
-    var data = {
-        index: redirects.length + 1,
-        date: now,
-        dateUTCStr: now.toUTCString(),
-        remoteAddress: req.connection.remoteAddress,
-        destination: redirect_url
+    if (!(id in redirects)) {
+        next()
+    }
+    else {
+        var entry = redirects[id]
+        
+        var now = new Date()
+        var req_data = {
+            date: now,
+            dateUTCStr: now.toUTCString(),
+            remoteAddress: req.connection.remoteAddress
+        }
+    
+        entry.requests.push(req_data)
+    
+        res.header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        res.header("Pragma: no-cache"); // HTTP 1.0.
+        res.header("Expires: 0"); // Proxies.
+        res.redirect(302, entry.dest)
+        console.log(`Redirect ${req_data.remoteAddress} to ${entry.dest}`)
     }
 
-    redirects.push(data)
 
-    res.header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
-    res.header("Pragma: no-cache"); // HTTP 1.0.
-    res.header("Expires: 0"); // Proxies.
-    res.redirect(302, redirect_url)
-    console.log(`Redirect ${data.remoteAddress} to ${data.destination}`)
+
 }
 
 module.exports = redirect

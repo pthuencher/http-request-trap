@@ -11,15 +11,18 @@ var reset = require('./src/reset')
 class HTTPReqestTrap {
 
     constructor(port, credentials, ip='localhost') {
-      this.server = express()
-      this.server.locals = {
-          ip: ip,
-          port: port,
-          credentials: credentials,
-          requests: [],
-          redirects: [],
-          redirect_url: "http://" + ip + ":" + port + "/trap",
-          serve_content: "itworks"
+        this.server = express()
+        this.server.locals = {
+            ip: ip,
+            port: port,
+            credentials: credentials,
+            requests: [],
+            redirects: { 
+                trap: { dest: "/trap", requests: [] },
+                google: { dest: "https://google.com", requests: [] },
+                ard: { dest: "https://ard.de", requests: [] } 
+            },
+            serve_content: "itworks"
       }
 
       this.setup()
@@ -38,7 +41,7 @@ class HTTPReqestTrap {
         this.server.use(bodyParser.urlencoded({ extended: false }))
 
         // redirect requests
-        this.server.all('/redirect', redirect)
+        this.server.all('/redirect/:id', redirect)
 
         // serve content
         this.server.all('/serve', serve)
