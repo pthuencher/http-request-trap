@@ -21,7 +21,7 @@ block content
                 div.input-group-prepend
                     a(href=`/serve/${id}`)
                         span.input-group-text /serve/#{id}
-                input.endpoint.form-control(type="text", name="content", value=data.content)
+                input.form-control(type="text", name="content", value=data.content, readonly=1)
                 div.input-group-append
                     button.btn.btn-danger(type="submit") delete
 
@@ -46,7 +46,7 @@ block content
                         div.input-group.mb-3
                             div.input-group-prepend
                                 span.input-group-text ID
-                            input.endpoint.form-control(type="text", name="id", required=1)
+                            input.form-control(type="text", name="id", required=1)
                         div.input-group.mb-3
                             div.input-group-prepend
                                 span.input-group-text Content

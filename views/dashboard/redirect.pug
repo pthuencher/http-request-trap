@@ -21,7 +21,7 @@ block content
                 div.input-group-prepend
                     a(href=`/redirect/${id}`)
                         span.input-group-text /redirect/#{id}
-                input.endpoint.form-control(type="text", name="dest", value=data.dest)
+                input.form-control(type="text", name="dest", value=data.dest, readonly=1)
                 div.input-group-append
                     button.btn.btn-danger(type="submit") delete
 
@@ -46,11 +46,11 @@ block content
                         div.input-group.mb-3
                             div.input-group-prepend
                                 span.input-group-text ID
-                            input.endpoint.form-control(type="text", name="id", required=1)
+                            input.form-control(type="text", name="id", required=1)
                         div.input-group.mb-3
                             div.input-group-prepend
                                 span.input-group-text Destination
-                            input.endpoint.form-control(type="text", name="dest", required=1)
+                            input.form-control(type="text", name="dest", required=1)
 
                     div.modal-footer
                         button.btn.btn-default(type="button", data-dismiss="modal") Close

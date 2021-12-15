@@ -18,7 +18,7 @@ block content
         div.input-group            
             div.input-group-prepend
                 span.input-group-text Endpoint
-            input.endpoint.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
+            input.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
             div.input-group-append
                 input.input-group-text.btn.btn-primary(type="button", value="copy", onclick="copy_clipboard('.endpoint');")
                 input.input-group-text.btn.btn-primary(type="button", value="reload", onclick="location.href='/dashboard/trap';")
