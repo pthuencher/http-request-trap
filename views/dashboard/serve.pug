@@ -12,7 +12,7 @@ block content
             a.nav-link.active(href="/dashboard/serve") /serve
 
     //- Serve entries
-    each data, id in locals.serves
+    each content, id in locals.serves
         form(action="/dashboard/serve", method="POST")
             input(type="hidden", name="action", value="delete")
             input(type="hidden", name="id", value=`${id}`)
@@ -21,7 +21,7 @@ block content
                 div.input-group-prepend
                     a(href=`/serve/${id}`)
                         span.input-group-text /serve/#{id}
-                input.form-control(type="text", name="content", value=data.content, readonly=1)
+                input.form-control(type="text", name="content", value=content, readonly=1)
                 div.input-group-append
                     button.btn.btn-danger(type="submit") delete
 

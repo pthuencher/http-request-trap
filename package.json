@@ -1,0 +1,29 @@
+{
+  "name": "http-request-trap",
+  "version": "1.0.0",
+  "description": "NodeJS (express) webserver to  * capture/log incoming requests * redirect to arbitrary destinations * serve arbitrary content",
+  "main": "HTTPRequestTrap.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pthuencher/http-request-trap.git"
+  },
+  "author": "pthuencher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pthuencher/http-request-trap/issues"
+  },
+  "homepage": "https://github.com/pthuencher/http-request-trap#readme"
+}

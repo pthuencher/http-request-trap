@@ -24,8 +24,7 @@ function dashboard(req, res, next) {
 
         default:
             //- Not found
-            next()
-            break
+            return next()
         
     }
 
@@ -70,10 +69,7 @@ function post_redirect(req, res, next) {
     switch(req.body.action) {
 
         case "add":
-            req.app.locals.redirects[req.body.id] = {
-                dest: req.body.dest,
-                requests: []
-            }
+            req.app.locals.redirects[req.body.id] = req.body.dest
             break
 
         case "delete":
@@ -100,10 +96,7 @@ function post_serve(req, res, next) {
     switch(req.body.action) {
 
         case "add":
-            req.app.locals.serves[req.body.id] = {
-                content: req.body.content,
-                requests: []
-            }
+            req.app.locals.serves[req.body.id] = req.body.content
             break
 
         case "delete":

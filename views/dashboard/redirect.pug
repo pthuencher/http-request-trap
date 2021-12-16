@@ -12,7 +12,7 @@ block content
             a.nav-link(href="/dashboard/serve") /serve
 
     //- Redirect entries
-    each data, id in locals.redirects
+    each destination, id in locals.redirects
         form(action="/dashboard/redirect", method="POST")
             input(type="hidden", name="action", value="delete")
             input(type="hidden", name="id", value=`${id}`)
@@ -21,7 +21,7 @@ block content
                 div.input-group-prepend
                     a(href=`/redirect/${id}`)
                         span.input-group-text /redirect/#{id}
-                input.form-control(type="text", name="dest", value=data.dest, readonly=1)
+                input.form-control(type="text", name="dest", value=destination readonly=1)
                 div.input-group-append
                     button.btn.btn-danger(type="submit") delete
 

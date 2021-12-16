@@ -7,22 +7,12 @@ function serve(req, res, next) {
     var id = req.params.id
 
     if (!(id in serves)) {
-        next()
+        return next()
     }
     else {
-        var entry = serves[id]
-        
-        var now = new Date()
-        var req_data = {
-            date: now,
-            dateUTCStr: now.toUTCString(),
-            remoteAddress: req.connection.remoteAddress
-        }
-    
-        entry.requests.push(req_data)
 
-        res.send(entry.content)
-        console.log(`Serve content of ${id} to ${req_data.remoteAddress}`)
+        res.send(serves[id])
+        console.log(`Serve content of ${id} to ${req.connection.remoteAddress}`)
     }
     
 }

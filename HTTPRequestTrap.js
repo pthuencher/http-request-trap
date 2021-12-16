@@ -18,13 +18,10 @@ class HTTPReqestTrap {
             request_id: 1,
             requests: [],
             redirects: { 
-                trap: { dest: "/trap", requests: [] },
-                google: { dest: "https://google.com", requests: [] },
-                ard: { dest: "https://ard.de", requests: [] } 
+                trap: "/trap",
             },
             serves: {
-                test: { content: "!! it works !!", requests: [] },
-                alert: { content: "<html><head/><body><script>alert('0ops!')</script></body></html>", requests: [] },
+                alert: "<html><head/><body><script>alert('0ops!')</script></body></html>",
             }
       }
 
