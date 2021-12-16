@@ -11,20 +11,17 @@ function capture(req, res) {
         date: now,
         dateUTCStr: now.toUTCString(),
         remoteAddress: req.connection.remoteAddress,
-        info: {
-            method: req.method,
-            url: req.originalUrl,
-            headers: req.headers,
-            body: req.body
-        }
+        method: req.method,
+        url: req.originalUrl,
+        headers: req.headers,
+        body: req.body
     }
 
-    req_data.info_json_str = JSON.stringify(req_data.info, null, 4);
     reqs.push(req_data)
 
     res.set("Access-Control-Allow-Origin", "*")
     res.send({"success": "true"})
-    console.log(`Captured ${req_data.info.method.toUpperCase()} ${req_data.info.url} from ${req_data.remoteAddress}`)
+    console.log(`Captured ${req_data.method.toUpperCase()} ${req_data.url} from ${req_data.remoteAddress}`)
 }
 
 module.exports = capture

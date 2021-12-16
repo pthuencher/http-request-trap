@@ -15,14 +15,18 @@ block content
     form(action="/dashboard/trap", method="POST", onsubmit="return confirm('Are you sure you want to delete all requests?')")
         input(type="hidden", name="action", value="delete")
     
-        div.input-group            
-            div.input-group-prepend
-                span.input-group-text Endpoint
-            input#trap-endpoint.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
-            div.input-group-append
-                input.input-group-text.btn.btn-primary(type="button", value="copy", onclick="copy_clipboard('#trap-endpoint');")
-                input.input-group-text.btn.btn-primary(type="button", value="reload", onclick="location.href='/dashboard/trap';")
-                button.btn.btn-danger(type="submit") reset
+        .row
+            .col
+                div.input-group            
+                    div.input-group-prepend
+                        span.input-group-text Endpoint
+                    input#trap-endpoint.form-control(type="text" value="http://"+locals.ip+":"+locals.port+"/trap", readonly=1)
+                    div.input-group-append
+                        input.input-group-text.btn.btn-primary(type="button", value="copy", onclick="copy_clipboard('#trap-endpoint');")
+            .col-auto
+                div.input-group
+                    input.input-group-text.btn.btn-primary(type="button", value="reload", onclick="location.href='/dashboard/trap';")
+                    button.btn.btn-danger(type="submit") reset
 
     hr
 
@@ -35,7 +39,27 @@ block content
                 span.req-time= req.dateUTCStr
                 
             .req-data.panel-body
-                pre= req.info_json_str
+                //- Method, url and buttons
+                div.input-group            
+                    div.input-group-prepend
+                        span.input-group-text= req.method
+                    input.form-control(type="text" value=req.url, readonly=1)
+                    div.input-group-append
+                        input.btn.btn-primary(type="button", value="data", data-toggle="collapse", data-target=`#req-header-collapse-${req.id}`, aria-expanded="false", aria-controls=`#req-header-collapse-${req.id}`)
+                
+                .collapse(id=`req-header-collapse-${req.id}`)
+                    //- HTML header data
+                    each data, key in req.headers
+                        div.input-group            
+                            div.input-group-prepend
+                                span.input-group-text= key
+                            input.form-control(type="text" value=data, readonly=1)
+
+                    //- Body data
+                    div.input-group            
+                        div.input-group-prepend
+                            span.input-group-text body
+                        input.form-control(type="text" value=req.body, readonly=1)
 
         hr
 
